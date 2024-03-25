@@ -1,0 +1,15 @@
+riscv-config:
+  name: https://github.com/NXP/riscv-config.git
+  branch: zilsd
+riscv-isac:
+  name: https://github.com/vyoma-systems/riscv-isac.git
+  branch: zilsd
+riscof:
+  name: https://github.com/vyoma-systems/riscof
+  branch: zilsd
+riscv-arch-test:
+  name: https://github.com/vyoma-systems/riscv-arch-test.git
+  branch: zilsd
+riscv-ctg:
+  name: https://github.com/vyoma-systems/riscv-ctg.git
+  branch: zilsd_ext
