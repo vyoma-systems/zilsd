@@ -65,6 +65,9 @@ class spike_simple(pluginTemplate):
                 self.isa += 'm'
             if "C" in ispec["ISA"]:
                 self.isa += 'c'
+            if "Zilsd" in ispec["ISA"]:
+                self.isa += 'Zilsd'
+
         compiler = "clang"
         if shutil.which(compiler) is None:
             logger.error(compiler+": executable not found. Please check environment setup.")

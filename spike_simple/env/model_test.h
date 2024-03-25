@@ -1,7 +1,7 @@
 #ifndef _COMPLIANCE_MODEL_H
 #define _COMPLIANCE_MODEL_H
 #if XLEN == 64
-  #define ALIGNMENT 3
+  #define ALIGNMENT 4
 #else
   #define ALIGNMENT 2
 #endif
