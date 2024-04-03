@@ -91,7 +91,7 @@ class sail_cSim(pluginTemplate):
             if shutil.which(objdump) is None:
                 logger.error(objdump+": executable not found. Please check environment setup.")
                 raise SystemExit
-            compiler = 'clang'
+            compiler = "clang".format(self.xlen)
             if shutil.which(compiler) is None:
                 logger.error(compiler+": executable not found. Please check environment setup.")
                 raise SystemExit
@@ -131,7 +131,7 @@ class sail_cSim(pluginTemplate):
                 test = dest.replace(self.work_dir,"/work")
                 test_dir = test_dir.replace(self.work_dir,"/work")
 
-            elf = 'ref.elf'
+            elf = 'my.elf'
 
             execute = ("@cd "+ test_dir +";")
 
@@ -150,20 +150,16 @@ class sail_cSim(pluginTemplate):
             cov_str = ' '
             for label in testentry['coverage_labels']:
                 cov_str+=' -l '+label
-
-            if cgf_file is not None:
-                coverage_cmd = 'riscv_isac --verbose info coverage -d \
-                        -t {0}.log --parser-name c_sail -o coverage.rpt  \
-                        --sig-label begin_signature  end_signature \
-                        --test-label rvtest_code_begin rvtest_code_end \
-                        -e ref.elf -c {1} -x{2} {3};'.format(\
-                        test_name, ' -c '.join(cgf_file), self.xlen, cov_str)
-            else:
-                coverage_cmd = ''
-
-
-            if not self.docker:
-                execute+=coverage_cmd
+            cgf_home = os.environ['CGF_HOME']
+            cgf_file = f'-c {cgf_home}/dataset.cgf  -c {cgf_home}/rv32zilsd.cgf  -c {cgf_home}/rv32i.cgf -c {cgf_home}/rv32ic.cgf '
+            coverage_cmd = 'riscv_isac --verbose info coverage -d \
+                    -t {0}.log --parser-name c_sail -o coverage.rpt  \
+                    --sig-label begin_signature  end_signature \
+                    --test-label rvtest_code_begin rvtest_code_end \
+                    -e my.elf {1} -x{2} {3};'.format(\
+                    test_name, cgf_file, self.xlen, cov_str)
+           
+            execute+=coverage_cmd
             make.add_target(execute,tname=test_name)
 
             if self.docker:
