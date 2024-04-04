@@ -76,13 +76,17 @@ class spike_simple(pluginTemplate):
             logger.error(self.dut_exe+ ": executable not found. Please check environment setup.")
             raise SystemExit
 
-    def runTests(self, testList):
+    def runTests(self, testList, cgf_file=None):
         for file in testList:
             testentry = testList[file]
             test = testentry['test_path']
             test_dir = testentry['work_dir']
 
-            elf = 'my.elf'
+            if cgf_file is not None:
+                elf = 'ref.elf'
+            else:
+                elf = 'dut.elf'
+
             sig_file = os.path.join(test_dir, self.name[:-1] + ".signature")
 
             cmd = self.compile_cmd.format(testentry['isa'].lower(), self.xlen) + ' ' + test + ' -o ' + elf
@@ -90,6 +94,23 @@ class spike_simple(pluginTemplate):
             logger.debug('Compiling test: ' + test)
             utils.shellCommand(compile_cmd).run(cwd=test_dir)
 
-            execute = self.spike_exe + ' --isa={0} +signature={1} +signature-granularity=4 {2}'.format(self.isa, sig_file, elf)
+            execute = self.spike_exe + ' --log-commits --log dump  --isa={0} +signature={1} +signature-granularity=4 {2}'.format(self.isa, sig_file, elf)
             logger.debug('Executing on Spike ' + execute)
             utils.shellCommand(execute).run(cwd=test_dir)
+
+            cov_str = ' '
+            for label in testentry['coverage_labels']:
+                cov_str+=' -l '+label
+
+            if cgf_file is not None:
+                coverage_cmd = f'riscv_isac --verbose error coverage -d \
+                        -t dump --parser-name spike -o coverage.rpt  \
+                        --sig-label begin_signature  end_signature \
+                        --test-label rvtest_code_begin rvtest_code_end \
+                        -e {elf} -c ' + ' -c '.join(cgf_file) + cov_str + " -x "+ self.xlen +';'
+            else:
+                coverage_cmd = ''
+
+
+            utils.shellCommand(coverage_cmd).run(cwd=test_dir)
+            
