@@ -1,0 +1,43 @@
+---
+cldsp:
+  config:
+  - check ISA:=regex(.*I.*C.*Zilsd.*)
+  mnemonics:
+    c.ldspz: 15
+    coverage: 1/1
+  rd:
+    x10: 1
+    x12: 1
+    x14: 1
+    x16: 1
+    x18: 1
+    x2: 1
+    x20: 1
+    x22: 1
+    x24: 1
+    x26: 1
+    x28: 1
+    x30: 1
+    x4: 1
+    x6: 1
+    x8: 1
+    coverage: 15/15
+  val_comb:
+    imm_val == 0: 1
+    imm_val > 0: 14
+    imm_val == 168: 1
+    imm_val == 336: 1
+    imm_val == 496: 1
+    imm_val == 488: 1
+    imm_val == 472: 1
+    imm_val == 440: 1
+    imm_val == 376: 1
+    imm_val == 248: 1
+    imm_val == 8: 1
+    imm_val == 16: 1
+    imm_val == 32: 1
+    imm_val == 64: 1
+    imm_val == 128: 1
+    imm_val == 256: 1
+    coverage: 16/16
+  total_coverage: 32/32
