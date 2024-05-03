@@ -5,14 +5,9 @@
 git clone https://github.com/vyoma-systems/zilsd
 git checkout zilsd
 pip install reporg; reporg -d $PWD/wd --list $PWD/riscof_repo_list.yaml
+pip install git+https://github.com/vyoma-systems/riscof.git@zilsd
 ```
-- Once you have a cloned all riscof utilites(riscv-config,riscv_isac,riscv_ctg,riscv) you can install by moving in each repo using the below command
 
-```bash
-
-pip install --editable .
-
-```
 - Export zilsd compilable `spike` and `clang` paths 
 
 
