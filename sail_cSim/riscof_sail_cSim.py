@@ -24,7 +24,7 @@ class sail_cSim(pluginTemplate):
 
     def __init__(self, *args, **kwargs):
         sclass = super().__init__(*args, **kwargs)
-
+        self.zilsdflg = False
         config = kwargs.get('config')
         if config is None:
             logger.error("Config node for sail_cSim missing.")
@@ -88,6 +88,7 @@ class sail_cSim(pluginTemplate):
             self.isa += 'd'
         if "Zilsd" in ispec["ISA"]:
             self.isa += 'Zilsd'
+            self.zilsdflg = True
         if "Zcmlsd" in ispec["ISA"]:
             self.isa += '_Zcmlsd'
         objdump = "riscv{0}-unknown-elf-objdump".format(self.xlen)
@@ -163,8 +164,8 @@ class sail_cSim(pluginTemplate):
                         -t {0}.log --parser-name c_sail -o coverage.rpt  \
                         --sig-label begin_signature  end_signature \
                         --test-label rvtest_code_begin rvtest_code_end \
-                        -e ref.elf -c {1} -x{2} -f32 {3};'.format(\
-                        test_name, ' -c '.join(cgf_file), self.xlen, cov_str)
+                        -e ref.elf -c {1}  --zilsdFlg {4} -x{2} -f32 {3};'.format(\
+                        test_name, ' -c '.join(cgf_file), self.xlen, cov_str,self.zilsdflg)
             else:
                 coverage_cmd = ''
 

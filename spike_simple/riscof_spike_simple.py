@@ -21,7 +21,7 @@ class spike_simple(pluginTemplate):
 
     def __init__(self, *args, **kwargs):
         sclass = super().__init__(*args, **kwargs)
-
+        self.zilsdflg = False
         config = kwargs.get('config')
         self.spike_exe = os.path.join(config['PATH'] if 'PATH' in config else "","spike")
         if config is None:
@@ -67,6 +67,7 @@ class spike_simple(pluginTemplate):
                 self.isa += 'c'
             if "Zilsd" in ispec["ISA"]:
                 self.isa += 'Zilsd'
+                self.zilsdflg = True
             if "Zcmlsd" in ispec["ISA"]:
                 self.isa += '_Zcmlsd'
 
@@ -96,7 +97,7 @@ class spike_simple(pluginTemplate):
             logger.debug('Compiling test: ' + test)
             utils.shellCommand(compile_cmd).run(cwd=test_dir)
 
-            execute = self.spike_exe + ' --log-commits --log dump  --isa={0} +signature={1} +signature-granularity=4 {2}'.format(self.isa, sig_file, elf)
+            execute = self.spike_exe + ' --log-commits --log dump  --isa=rv32icZilsd_Zcmlsd +signature={0} +signature-granularity=4 {1}'.format( sig_file, elf)
             logger.debug('Executing on Spike ' + execute)
             utils.shellCommand(execute).run(cwd=test_dir)
 
@@ -109,7 +110,7 @@ class spike_simple(pluginTemplate):
                         -t dump --parser-name spike -o coverage.rpt  \
                         --sig-label begin_signature  end_signature \
                         --test-label rvtest_code_begin rvtest_code_end \
-                        -e {elf} -c ' + ' -c '.join(cgf_file) + cov_str + " -x "+ self.xlen +';'
+                        -e {elf} -c ' + ' -c '.join(cgf_file) + cov_str + ' --zilsdFlg {0}'.format(self.zilsdflg) + " -x "+ self.xlen +';'
             else:
                 coverage_cmd = ''
 
