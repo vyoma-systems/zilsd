@@ -97,7 +97,7 @@ class spike_simple(pluginTemplate):
             logger.debug('Compiling test: ' + test)
             utils.shellCommand(compile_cmd).run(cwd=test_dir)
 
-            execute = self.spike_exe + ' --log-commits --log dump  --isa=rv32icZilsd_Zcmlsd +signature={0} +signature-granularity=4 {1}'.format( sig_file, elf)
+            execute = self.spike_exe + ' --log-commits --log dump  --isa={0} +signature={1} +signature-granularity=4 {2}'.format(self.isa,sig_file, elf)
             logger.debug('Executing on Spike ' + execute)
             utils.shellCommand(execute).run(cwd=test_dir)
 
