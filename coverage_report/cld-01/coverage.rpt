@@ -1,0 +1,40 @@
+---
+cld:
+  config:
+  - check ISA:=regex(.*I.*C.*Zilsd.*)
+  mnemonics:
+    c.ldz: 14
+    coverage: 1/1
+  op_comb:
+    rs1 != rd: 13
+    rs1 == rd: 1
+    coverage: 2/2
+  rd:
+    x10: 1
+    x12: 1
+    x14: 11
+    x8: 1
+    coverage: 4/4
+  rs1:
+    x10: 1
+    x12: 1
+    x14: 1
+    x8: 1
+    coverage: 4/4
+  val_comb:
+    imm_val == 0: 1
+    imm_val > 0: 13
+    imm_val == 168: 1
+    imm_val == 80: 1
+    imm_val == 8: 1
+    imm_val == 16: 1
+    imm_val == 240: 1
+    imm_val == 232: 1
+    imm_val == 216: 1
+    imm_val == 184: 1
+    imm_val == 120: 1
+    imm_val == 32: 1
+    imm_val == 64: 1
+    imm_val == 128: 1
+    coverage: 14/14
+  total_coverage: 25/25

@@ -1,0 +1,59 @@
+---
+ld:
+  config:
+  - check ISA:=regex(.*I.*Zilsd.*)
+  mnemonics:
+    ldz: 15
+    coverage: 1/1
+  op_comb:
+    rs1 != rd: 14
+    rs1 == rd: 1
+    coverage: 2/2
+  rd:
+    x10: 1
+    x12: 1
+    x14: 1
+    x16: 1
+    x18: 1
+    x2: 1
+    x20: 1
+    x22: 1
+    x24: 1
+    x26: 1
+    x28: 1
+    x30: 1
+    x4: 1
+    x6: 1
+    x8: 1
+    coverage: 15/15
+  rs1:
+    x10: 1
+    x12: 1
+    x14: 1
+    x16: 1
+    x18: 1
+    x2: 1
+    x20: 1
+    x22: 1
+    x24: 1
+    x26: 1
+    x28: 1
+    x30: 1
+    x4: 1
+    x6: 1
+    x8: 1
+    coverage: 15/15
+  val_comb:
+    ea_align == 0 and (imm_val % 8) == 0: 8
+    ea_align == 0 and (imm_val % 8) == 1: 1
+    ea_align == 0 and (imm_val % 8) == 2: 1
+    ea_align == 0 and (imm_val % 8) == 3: 1
+    ea_align == 0 and (imm_val % 8) == 4: 1
+    ea_align == 0 and (imm_val % 8) == 5: 1
+    ea_align == 0 and (imm_val % 8) == 6: 1
+    ea_align == 0 and (imm_val % 8) == 7: 1
+    imm_val < 0: 11
+    imm_val == 0: 1
+    imm_val > 0: 3
+    coverage: 11/11
+  total_coverage: 44/44

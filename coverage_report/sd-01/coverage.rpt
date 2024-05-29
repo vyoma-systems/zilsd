@@ -1,0 +1,127 @@
+---
+sd:
+  config:
+  - check ISA:=regex(.*I.*Zilsd.*)
+  mnemonics:
+    sdz: 67
+    coverage: 1/1
+  op_comb:
+    rs1 != rs2: 67
+    coverage: 1/1
+  rs1:
+    x10: 1
+    x12: 1
+    x14: 1
+    x16: 1
+    x18: 1
+    x2: 1
+    x20: 1
+    x22: 1
+    x24: 1
+    x26: 1
+    x28: 1
+    x30: 1
+    x4: 1
+    x6: 1
+    x8: 1
+    coverage: 15/15
+  rs2:
+    x10: 1
+    x12: 1
+    x14: 1
+    x16: 1
+    x18: 1
+    x2: 1
+    x20: 1
+    x22: 1
+    x24: 1
+    x26: 1
+    x28: 1
+    x30: 53
+    x4: 1
+    x6: 1
+    x8: 1
+    coverage: 15/15
+  val_comb:
+    ea_align == 0 and (imm_val % 8) == 0: 24
+    ea_align == 0 and (imm_val % 8) == 1: 5
+    ea_align == 0 and (imm_val % 8) == 2: 2
+    ea_align == 0 and (imm_val % 8) == 3: 5
+    ea_align == 0 and (imm_val % 8) == 4: 2
+    ea_align == 0 and (imm_val % 8) == 5: 8
+    rs2_val == -2: 1
+    rs2_val == -3: 1
+    rs2_val == -5: 1
+    rs2_val == -9: 1
+    rs2_val == -17: 1
+    rs2_val == -33: 1
+    rs2_val == -65: 1
+    rs2_val == -129: 1
+    rs2_val == -257: 1
+    rs2_val == -513: 1
+    rs2_val == -1025: 1
+    rs2_val == -2049: 1
+    rs2_val == -4097: 1
+    rs2_val == -8193: 1
+    rs2_val == -16385: 1
+    rs2_val == -32769: 1
+    rs2_val == -65537: 1
+    rs2_val == -131073: 1
+    rs2_val == -262145: 1
+    rs2_val == -524289: 1
+    rs2_val == -1048577: 1
+    rs2_val == -2097153: 1
+    rs2_val == -4194305: 1
+    rs2_val == -8388609: 1
+    rs2_val == -16777217: 1
+    rs2_val == -33554433: 1
+    rs2_val == -67108865: 1
+    rs2_val == -134217729: 1
+    rs2_val == -268435457: 1
+    rs2_val == -536870913: 1
+    rs2_val == -1073741825: 1
+    rs2_val == 2147483647: 1
+    rs2_val == 1: 1
+    rs2_val == 2: 1
+    rs2_val == 4: 1
+    rs2_val == 8: 1
+    rs2_val == 16: 1
+    rs2_val == 32: 1
+    rs2_val == 64: 1
+    rs2_val == 128: 1
+    rs2_val == 256: 1
+    rs2_val == 512: 1
+    rs2_val == 1024: 1
+    rs2_val == 2048: 1
+    rs2_val == 4096: 1
+    rs2_val == 8192: 1
+    rs2_val == 16384: 1
+    rs2_val == 32768: 1
+    rs2_val == 65536: 1
+    rs2_val == 131072: 1
+    rs2_val == 262144: 1
+    rs2_val == 524288: 1
+    rs2_val == 1048576: 1
+    rs2_val == 2097152: 1
+    rs2_val == 4194304: 1
+    rs2_val == 8388608: 1
+    rs2_val == 16777216: 1
+    rs2_val == 33554432: 1
+    rs2_val == 67108864: 1
+    rs2_val == 134217728: 1
+    rs2_val == 268435456: 1
+    rs2_val == 536870912: 1
+    rs2_val == 1073741824: 1
+    rs2_val == -2147483648: 1
+    rs2_val == 1431655765: 1
+    rs2_val == -1431655766: 1
+    ea_align == 0 and (imm_val % 8) == 6: 4
+    ea_align == 0 and (imm_val % 8) == 7: 17
+    imm_val < 0: 32
+    imm_val == 0: 3
+    imm_val > 0: 32
+    rs2_val == (-2**(xlen-1)): 1
+    rs2_val == (2**(xlen-1)-1): 1
+    rs2_val == 0: 1
+    coverage: 80/80
+  total_coverage: 112/112
