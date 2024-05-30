@@ -51,7 +51,7 @@ class sail_cSim(pluginTemplate):
         self.work_dir = work_dir
         self.objdump_cmd = 'riscv{1}-unknown-elf-objdump -D {0} > {2};'
         self.archtest_env = archtest_env
-        compile_cmd = 'clang -march={0} \
+        compile_cmd = 'clang -march=rv32icZilsd \
          -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles'
 
         if not self.docker:
