@@ -69,7 +69,7 @@ class spike_simple(pluginTemplate):
                 self.isa += 'Zilsd'
                 self.zilsdflg = True
             if "Zcmlsd" in ispec["ISA"]:
-                self.isa += '_Zcmlsd'
+                self.isa += '_Zca_Zcmlsd'
 
         compiler = "clang"
         if shutil.which(compiler) is None:
