@@ -12,4 +12,4 @@ riscv-arch-test:
   branch: zilsd
 riscv-ctg:
   name: https://github.com/vyoma-systems/riscv-ctg.git
-  branch: zilsd_ext
+  branch: zilsd

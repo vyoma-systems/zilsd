@@ -3,7 +3,6 @@
 ## Clone and install the requirements 
 ```bash
 git clone https://github.com/vyoma-systems/zilsd
-git checkout zilsd
 pip install reporg; reporg -d $PWD/wd --list $PWD/riscof_repo_list.yaml
 pip install git+https://github.com/vyoma-systems/riscof.git@zilsd
 ```
