@@ -43,7 +43,7 @@ class spike_simple(pluginTemplate):
 
     def initialise(self, suite, work_dir, compliance_env):
         self.work_dir = work_dir
-        self.compile_cmd = 'clang -march=rv32icZilsd \
+        self.compile_cmd = 'clang -march=rv32iczilsd \
          -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles\
          -T '+self.pluginpath+'/env/link.ld\
          -I '+self.pluginpath+'/env/\
