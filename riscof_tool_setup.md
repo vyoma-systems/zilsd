@@ -121,5 +121,5 @@ pip install git+https://github.com/vyoma-systems/riscof.git@zilsd
 
 ### Compile and Run tests
 ```
-riscof -v verbose run --config=config.ini --suite=./wd/riscv-arch-test/riscv-test-suite/ --env=./wd/riscv-arch-test/riscv-test-suite/env
+riscof -v debug run --config=config.ini --suite=./wd/riscv-arch-test/riscv-test-suite/ --env=./wd/riscv-arch-test/riscv-test-suite/env
 ```
