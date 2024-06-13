@@ -1,6 +1,6 @@
 riscv-config:
-  name: https://github.com/NXP/riscv-config.git
-  branch: zilsd
+  name: https://github.com/riscv-software-src/riscv-config.git
+  branch: dev
 riscv-isac:
   name: https://github.com/vyoma-systems/riscv-isac.git
   branch: zilsd
