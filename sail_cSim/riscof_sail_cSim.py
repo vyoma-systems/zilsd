@@ -90,7 +90,7 @@ class sail_cSim(pluginTemplate):
             self.isa += 'Zilsd'
             self.zilsdflg = True
         if "Zcmlsd" in ispec["ISA"]:
-            self.isa += '_Zcmlsd'
+            self.isa += '_Zca_Zcmlsd'
         objdump = "riscv{0}-unknown-elf-objdump".format(self.xlen)
         if not self.docker:
             if shutil.which(objdump) is None:
