@@ -43,7 +43,7 @@ class spike_simple(pluginTemplate):
 
     def initialise(self, suite, work_dir, compliance_env):
         self.work_dir = work_dir
-        self.compile_cmd = 'clang -march={0} \
+        self.compile_cmd = 'riscv{1}-unknown-elf-gcc -march={0} \
          -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles\
          -T '+self.pluginpath+'/env/link.ld\
          -I '+self.pluginpath+'/env/\
@@ -71,7 +71,7 @@ class spike_simple(pluginTemplate):
             if "Zcmlsd" in ispec["ISA"]:
                 self.isa += '_Zca_Zcmlsd'
 
-        compiler = "clang"
+        compiler = "riscv{0}-unknown-elf-gcc".format(self.xlen)
         if shutil.which(compiler) is None:
             logger.error(compiler+": executable not found. Please check environment setup.")
             raise SystemExit
