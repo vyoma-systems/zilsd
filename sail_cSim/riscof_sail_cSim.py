@@ -154,9 +154,9 @@ class sail_cSim(pluginTemplate):
             else:
                 cmd = self.sail_exe[self.xlen] + ' -F '
             if "Zilsd" in self.isa:
-                cmd = cmd + ' -y'  
+                cmd = cmd + ' --enable-zilsd'  
             if "Zcmlsd" in self.isa:
-                cmd = cmd + ' -Z' 
+                cmd = cmd + ' --enable-zcmlsd' 
             execute += cmd + ' --test-signature={0} {1} > {2}.log 2>&1;'.format(sig_file, elf, test_name)
             execute +=  f'perl -pi -e \'s/^\[/\\n\\n\[/\' {test_name}.log;'
             cov_str = ' '
