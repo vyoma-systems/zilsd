@@ -3,11 +3,16 @@
 ## Clone and install the requirements 
 ```bash
 git clone https://github.com/vyoma-systems/zilsd
-pip install reporg; reporg -d $PWD/wd --list $PWD/riscof_repo_list.yaml
-pip install git+https://github.com/vyoma-systems/riscof.git@zilsd
+mkdir -p zilsd/wd
+cd zilsd/wd 
+git clone https://github.com/riscv-software-src/riscv-config.git -b dev 
+git clone https://github.com/vyoma-systems/riscv-isac.git -b zilsd 
+git clone https://github.com/vyoma-systems/riscv-ctg.git -b zilsd 
+git clone https://github.com/vyoma-systems/riscv-arch-test.git -b zilsd 
+git clone https://github.com/vyoma-systems/riscof.git -b zilsd 
 ```
 
-- Export zilsd compilable `spike` and `clang` paths 
+- Install the appropriate python packages and export zilsd compilable `spike` and `gcc` paths 
 
 
 ## To generate Zilsd test using riscv-ctg:
